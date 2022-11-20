@@ -65,7 +65,7 @@ class LoginPage extends Component {
                                                  <span onClick={this.changeLogin} style={{ "fontWeight":"bold", "color":"white", "backgroundColor": "#1AD15F", "border": "5px solid #1AD15F", "borderRadius": "5px"}}>Sign up</span>
                                         </div> :
                                         <div className="loginPage__signup">
-                                                Have an account? <span onClick={this.changeLogin}  style={{ "fontWeight":"bold", "color":"white", "backgroundColor": "#1AD15F", "border": "1px solid #1AD15F", "borderRadius": "5px"}}>Sign in</span>
+                                                Have an account? <span onClick={this.changeLogin}  style={{ "fontWeight":"bold", "color":"white", "backgroundColor": "#1AD15F", "border": "5px solid #1AD15F", "borderRadius": "5px"}}>Sign in</span>
                                         </div>}
                                         </div>
                                    </div>
