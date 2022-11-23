@@ -45,14 +45,14 @@ body {
     border-radius: 5px;
     font-weight: bold;
     margin-top: 5px;
-    border: 1px solid #0395F6;
-    background-color: #0395F6;
+    border: 1px solid #0B9082;
+    background-color: #0B9082;
     color: white;
 }
 
 .login_forgt {
-    color: rgba(var(--fe0, 0, 0, 300), 1);
-    font-size: 12px;
+    color:#FE9124;
+    font-size: 14px;
     line-height: 14px;
     margin-top: 12px;
     text-align: center;
@@ -74,6 +74,10 @@ body {
 
 .loginPage__signup {
     margin-top: 20px;
+}
+
+.loginPage_sgin{
+    margin-top: 10px;
 }
 
 .login__ordiv {
