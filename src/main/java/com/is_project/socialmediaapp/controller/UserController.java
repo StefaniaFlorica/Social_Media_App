@@ -7,6 +7,7 @@ import com.is_project.socialmediaapp.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/userService")
 public class UserController {

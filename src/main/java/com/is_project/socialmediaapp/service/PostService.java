@@ -8,6 +8,7 @@ import com.is_project.socialmediaapp.repository.PostRepo;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PostService {
@@ -17,6 +18,7 @@ public class PostService {
     @Autowired
     UserService userService;
     public Post submitPostToDB(Post postData){
+        //postData.setPostID(UUID.randomUUID());
         User user = userService.getUserById(postData.getUserID());
         postData.setImageURL(user.getUserImageURL());
         postData.setUserName(user.getUserName());
@@ -33,5 +35,9 @@ public class PostService {
 //        return result;
 //
 //    }
+    public Post getPostById(UUID id)
+    {
+        return postRepo.getByPostID(id);
+    }
 
 }
