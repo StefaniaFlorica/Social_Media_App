@@ -1,22 +1,13 @@
-.navbar_main {
-   border-bottom: 1px solid #D8D8DE; 
+.navbar__main {
+    border-bottom: 1px solid #D8DBDE;
 }
-
-.navbar_logo {
-    margin: 8px 10px 8px 16px;
+.navbar__logo {
+    margin: 8px 10px 8px 16px ;
 }
-
-.navbar_container {
-    display: flex;
-    margin-top: 10px;
-    margin-left: 60px;
-}
-
-.navbar_leftbar {
+.navbar__leftbar {
     display: flex;
 }
-
-.navbar_search {
+.navbar__search {
     height: 40px;
     width: 190px;
     border-radius: 25px;
@@ -27,29 +18,29 @@
     margin-top: 8px;
 }
 
-.navbar_tabs {
+.navbar__container {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+.navbar__tabs {
     width: 120px;
-    margin-right: 20px;
+    height: 45px;
 }
-
-.navbar_tabs.active {
-    border-bottom: 3px solid #317775;
-    height: 50px;
+.navbar__tabs.active {
+    border-bottom: 3px solid #1B77F2;
 }
-
-.navbar_righttab {
+.navbar__righttab {
     display: flex;
     margin-left: 40px;
 }
-
-.navbar_rightimg {
+.navbar__rightimg {
     margin-top: 15px;
     margin-right: 10px;
     max-width: 30px;
     max-height: 30px;
 }
-
-.navbar_profilename {
+.navbar__profilename{
     margin-top: 20px;
     font-weight: 600;
 }

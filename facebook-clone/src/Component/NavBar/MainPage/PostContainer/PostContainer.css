@@ -1,80 +1,89 @@
-.post_container {
+.post__container {
     width: 600px;
     margin-top: 20px;
     border-radius: 20px;
 }
 
-.post_header {
+.post__container {
+
+}
+.post__header {
     display: flex;
     height: 65px;
 }
+.post__header_img {
 
-.post_header_img {
-    
 }
-
 .post_img {
     margin: 15px;
 }
-
-.post_header_text {
+.post__header_text {
     font-weight: 700;
     margin-top: 20px;
     font-size: 14px;
 }
-
-.post_description {
+.post__description {
     display: flex;
     margin-left: 15px;
 }
-
-.post_image {
-    margin: 10px 0px;
+.post__image {
+    margin: 10px 0px    ;
 }
 
-.post_like_container {
+.post__likeCountContainer {
     display: flex;
     height: 30px;
     padding: 0px 10px;
     border-bottom: 1px solid #CDD0D4;
 }
-
-.post_like{
+.post__like{
 
 }
-
-.post_like_img {
+.post__img {
     height: 20px;
 }
-
-.post_like_count {
+.post__likecount{
     margin-left: 5px;
 }
 
-.post_likeShare {
+.post__likeShare{
     display: flex;
     height: 40px;
     margin-left: 100px;
     margin-top: 10px;
 }
-
-.post_tab {
+.post__tab {
     display: flex;
     width: 200px;
 }
-
-.post_tabfirst {
+.post__tabfirst{
 
 }
-
-.post_tabimg {
+.post__tabimg{ 
     width: 30px;
 }
-
-.post_tabtext {
+.post__tabtext{
     margin: 5px;
 }
-
-.upload_comment {
+.upload__comment {
     border-top: 1px solid #CDD0D4;
+}
+.comment__section {
+    text-align: left;
+    margin: 10px;
+}
+.comment {
+    margin: 20px;
+    display: flex;
+}
+.comment_img {
+    max-width: 35px;
+    max-height: 35px;
+}
+.comment_text{
+    margin: 5px;
+}
+.post__commentcount {
+    width: 100%;
+    text-align: right;
 }
