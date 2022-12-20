@@ -18,7 +18,7 @@ public class PostService {
     @Autowired
     UserService userService;
     public Post submitPostToDB(Post postData){
-        //postData.setPostID(UUID.randomUUID());
+        postData.setPostID(UUID.randomUUID());
         User user = userService.getUserById(postData.getUserID());
         postData.setImageURL(user.getUserImageURL());
         postData.setUserName(user.getUserName());
