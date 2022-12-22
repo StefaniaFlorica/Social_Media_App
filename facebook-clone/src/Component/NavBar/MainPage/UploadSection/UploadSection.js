@@ -17,9 +17,8 @@ class UploadSection extends Component {
       open: false,
       uploadImage: null,
       description: null,
-      image: null
+      image: null,
     };
-   //  const [imageUpload, setImageUpload] = useState(null);
   }
   handleClose = () => {
     this.setState({ open: false });
@@ -31,61 +30,50 @@ class UploadSection extends Component {
     this.setState({ image: event.target.files[0] });
   };
 
-  uploadImage = () => {
-    if (this == null) return;
+  uploadToFireBase = () => {
+    const thisContext = this;
+    if (image == null) return;
+
     const imageName = this.state.image.name + v4();
-    const imageRef = ref(db, `images/${imageName}`);
-    uploadBytes(imageRef, this.uploadImage).then(() => {
+    console.log(imageName);
+    let imageRef = ref(db, `images/${imageName}`);
+    uploadBytes(imageRef, this.state.image).then(() => {
       alert("Image Uploaded");
+      this.setState(this.state);
+      listAll(ref(db, "images/")).then((response) => {
+        response.items.forEach((item) => {
+          if (item.name == imageName) {
+            getDownloadURL(item).then((downloadURL) => {
+              let payload = {
+                userID: JSON.parse(localStorage.getItem("user")).userId,
+                userName: JSON.parse(localStorage.getItem("user")).userName,
+                description: thisContext.state.description,
+                postImgURL: downloadURL,
+              };
+
+              const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              };
+
+              fetch(
+                "http://localhost:8080/api/postService/save",
+                requestOptions
+              )
+                .then((response) => response.json())
+                .then((data) => {
+                  thisContext.setState({ open: false });
+                  thisContext.props.update();
+                  alert("saved to db");
+                })
+                .catch((error) => {});
+            });
+          }
+        });
+      });
     });
   };
-
-  // uploadToFireBase = () => {
-  // const thisContext = this;
-  // if (this.state.image === null) return;
-  // const imageName = this.state.image.name + v4();
-  // const imageRef = ref(db, `images/${imageName}`);
-  // uploadBytes(imageRef, this.state.image).then(() => {
-  //   alert("Image Uploaded");
-  // });
-
-  // const imageListRef = ref(db, "images/");
-  // listAll(imageListRef).then((response) => {
-  //   response.items.forEach((item) => {
-  //     console.log(item.name);
-  // console.log(imageName);
-  // if (item.name == imageName)
-  // {
-  //     getDownloadURL(item).then((downloadURL) => {
-  //       let payload = {
-  //         userID: JSON.parse(localStorage.getItem("user")).userID,
-  //         userName: JSON.parse(localStorage.getItem("user")).userName,
-  //         description: this.state.description,
-  //         imageURL: downloadURL,
-  //       };
-
-  //       const requestOptions = {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(payload),
-  //       };
-
-  //       fetch(
-  //         "http://localhost:8080/api/postService/save",
-  //         requestOptions
-  //       )
-  //         .then((response) => response.json())
-  //         .then((data) => {
-  //           this.setState({ open: false });
-  //           this.props.update();
-  //           alert("Posted!");
-  //         })
-  //         .catch((error) => {});
-  //     });
-  // }
-  //     });
-  //   });
-  // };
 
   render() {
     return (
@@ -111,11 +99,9 @@ class UploadSection extends Component {
           />
           <img src={this.state.uploadImage} className="upload__preview" />
           <input
-            type="file"
-            // value="Post"
-            onChange={(event) => {
-              this.uploadImage = event.target.files[0];
-            }}
+            type="button"
+            value="Post"
+            onClick={this.uploadToFireBase}
             className="upload__button"
           />
         </Dialog>

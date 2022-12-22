@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./LeftSide.css";
 import ImageLayout from "../ImageLayout";
-import covid from "../../../../images/covid.png";
 import groups from "../../../../images/groups.png";
 import memories from "../../../../images/memories.png";
 import messengerKids from "../../../../images/messengerkids.png";
@@ -19,15 +18,10 @@ class LeftSide extends Component {
   }
 
   getData = () => {
-    //FAke JSON RESPONSE
     let jsondata = [
       {
-        image: JSON.parse(localStorage.getItem("user")).userImage,
+        image: require("../../../../images/"+JSON.parse(localStorage.getItem("user")).userImageURL+".png"),
         text: JSON.parse(localStorage.getItem("user")).userName,
-      },
-      {
-        image: covid,
-        text: "COVID-19 Information Centre",
       },
       {
         image: groups,

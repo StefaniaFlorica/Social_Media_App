@@ -12,7 +12,8 @@ class StatusBar extends Component {
 
   getData = () => {
     const thisContext = this;
-    fetch("http://localhost:8080/api/statusService/getAllStatus")
+    let userID = JSON.parse(localStorage.getItem("user")).userId;
+    fetch("http://localhost:8080/api/statusService/getAllStatusByUserId/"+ userID)
       .then((response) => response.json())
       .then((json) => {
         thisContext.setState({ data: json });

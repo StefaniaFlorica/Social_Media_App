@@ -14,7 +14,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: JSON.parse(localStorage.getItem("user")).userImage,
+      image: JSON.parse(localStorage.getItem("user")).userImageURL,
     };
   }
   render() {
