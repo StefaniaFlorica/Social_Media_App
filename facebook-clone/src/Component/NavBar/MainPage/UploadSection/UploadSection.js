@@ -111,7 +111,7 @@ class UploadSection extends Component {
             <div>
               <Avatar
                 src={getImage(
-                  JSON.parse(localStorage.getItem("user")).userImage
+                  JSON.parse(localStorage.getItem("user")).userImageURL
                 )}
                 className="upload_img"
               />

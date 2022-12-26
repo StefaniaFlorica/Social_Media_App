@@ -24,6 +24,7 @@ class Post extends Component {
     )
       .then((response) => response.json())
       .then((json) => {
+        console.log(this.props.object.postID)
         thisContext.setState({ comments: json });
       })
       .catch((error) => {
@@ -33,22 +34,23 @@ class Post extends Component {
   componentDidMount() {
     this.getData();
   }
-
   isImageAvailable = (data) => {
     return data === "" ? false : true;
   };
-
   submitComment = (event) => {
     if (event.key === "Enter") {
       const thisContext = this;
+      let obj = JSON.parse(localStorage.getItem("user"));
+      console.log(obj);
       let payload = {
         postID: this.props.object.postID,
-        userID: JSON.parse(localStorage.getItem("user")).userID,
-        userImage: JSON.parse(localStorage.getItem("user")).userImage,
-        userName: JSON.parse(localStorage.getItem("user")).userName,
+        userID: obj.userId,
+        userImage: obj.userImageURL,
+        userName: obj.userName,
         comment: this.state.comment,
       };
 
+      console.log(payload);
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,7 +74,7 @@ class Post extends Component {
           {/* header */}
           <div className="post__header">
             <div className="post__header_img">
-              <Avatar src={getImage("dp1")} className="post_img" />
+              <Avatar src={getImage(this.props.object.imageURL)} className="post_img" />
             </div>
             <div className="post__header_text">
               {this.props.object.userName}
@@ -145,7 +147,7 @@ class Post extends Component {
               <div>
                 <Avatar
                   src={getImage(
-                    JSON.parse(localStorage.getItem("user")).userImage
+                    JSON.parse(localStorage.getItem("user")).userImageURL
                   )}
                   className="upload_img"
                 />
@@ -154,7 +156,10 @@ class Post extends Component {
                 <input
                   onKeyDown={this.submitComment}
                   onChange={(event) => {
-                    this.state.comment = event.currentTarget.value;
+                    this.setState({
+                      comment: event.currentTarget.value
+                    })
+                    // this.state.comment = event.currentTarget.value;
                   }}
                   className="upload__box"
                   placeholder="Write a comment"

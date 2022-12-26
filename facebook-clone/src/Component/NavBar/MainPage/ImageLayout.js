@@ -17,7 +17,7 @@ class ImageLayout extends Component {
           {this.props.status ? (
             <Badge
               color="secondary"
-              overlap="circle"
+              overlap="circular"
               badgeContent=" "
               variant="dot"
             >

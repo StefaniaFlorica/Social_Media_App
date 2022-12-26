@@ -13,11 +13,12 @@ class RightSide extends Component {
   getData = () => {
 
     const thisContext = this;
-    fetch("http://localhost:8080/api/userService/getAllUsers")
+    fetch("http://localhost:8080/api/userService/getAllUsers/" + 
+      JSON.parse(localStorage.getItem("user")).userId)
       .then((response) => response.json())
       .then((json) => {
         thisContext.setState({ data: json });
-        //console.log(json);
+        // console.log(json);
       })
       .catch((error) => {});
   };
@@ -34,7 +35,7 @@ class RightSide extends Component {
           {this.state.data.map((item) => (
             <ImageLayout
               image={item.userImageURL}
-              status={item.active}
+              status={item.activityStatus}
               text={item.userName}
             />
           ))}
