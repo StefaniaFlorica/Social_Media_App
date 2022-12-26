@@ -1,11 +1,8 @@
 package com.is_project.socialmediaapp.controller;
 
-
 import com.is_project.socialmediaapp.entity.Post;
 import java.util.List;
-import java.util.UUID;
 
-import com.is_project.socialmediaapp.entity.User;
 import com.is_project.socialmediaapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +28,7 @@ public class PostController {
     @GetMapping("/getPostById/{postId}")
     public Post getPostById(@PathVariable("postId") String postId)
     {
-        return postService.getPostById(UUID. fromString(postId));
+        return postService.getPostById(postId);
     }
 //    @DeleteMapping("/deletePosts/{postId}")
 //    public List<Post> deleteParticularPost(@PathVariable ("postId") String postID){

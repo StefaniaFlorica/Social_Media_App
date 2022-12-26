@@ -1,12 +1,11 @@
 package com.is_project.socialmediaapp.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 public class Post {
     @Id
-    private UUID postID;
+    private String postID;
 
     @Column
     private String userID;
@@ -29,7 +28,7 @@ public class Post {
 
     }
 
-    public Post(UUID postID, String userID, String userName, String imageURL, String description, String postImgURL, int likes, Timestamp dateTime) {
+    public Post(String postID, String userID, String userName, String imageURL, String description, String postImgURL, int likes, Timestamp dateTime) {
         this.postID = postID;
         this.userID = userID;
         this.userName = userName;
@@ -40,11 +39,11 @@ public class Post {
         this.dateTime = dateTime;
     }
 
-    public UUID getPostID() {
+    public String getPostID() {
         return postID;
     }
 
-    public void setPostID(UUID postID) {
+    public void setPostID(String postID) {
         this.postID = postID;
     }
 

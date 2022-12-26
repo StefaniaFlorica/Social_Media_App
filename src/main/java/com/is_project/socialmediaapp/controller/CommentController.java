@@ -1,6 +1,5 @@
 package com.is_project.socialmediaapp.controller;
 import java.util.List;
-import java.util.UUID;
 
 import com.is_project.socialmediaapp.entity.Comment;
 import com.is_project.socialmediaapp.service.CommentService;
@@ -27,8 +26,8 @@ public class CommentController {
     }
 
     @GetMapping("/getAllComments/{postID}")
-    public List<Comment> getAllComments(@PathVariable("postID") UUID postID){
-        return commentService.getAllComment(postID);
+    public List<Comment> getAllComments(@PathVariable("postID") String postID){
+        return commentService.getAllComments(postID);
 
     }
 }

@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class StatusService {
@@ -23,9 +22,10 @@ public class StatusService {
 
     public Status submitStatus(Status status) {
         status.setDateTime(new Timestamp(new Date().getTime()));
-        byte[] array = new byte[15]; // length is bounded by 7
-        new Random().nextBytes(array);
-        String generatedId = new String(array, Charset.forName("UTF-8"));
+//        byte[] array = new byte[15]; // length is bounded by 7
+//        new Random().nextBytes(array);
+//        String generatedId = new String(array, Charset.forName("UTF-8"));
+        String generatedId = UUID.randomUUID().toString();
         status.setStatusId(generatedId);
         return statusRepo.save(status);
     }

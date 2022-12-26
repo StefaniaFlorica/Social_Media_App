@@ -18,7 +18,7 @@ public class PostService {
     @Autowired
     UserService userService;
     public Post submitPostToDB(Post postData){
-        postData.setPostID(UUID.randomUUID());
+        postData.setPostID(UUID.randomUUID().toString());
         User user = userService.getUserById(postData.getUserID());
         postData.setImageURL(user.getUserImageURL());
         postData.setUserName(user.getUserName());
@@ -35,7 +35,7 @@ public class PostService {
 //        return result;
 //
 //    }
-    public Post getPostById(UUID id)
+    public Post getPostById(String id)
     {
         return postRepo.getByPostID(id);
     }

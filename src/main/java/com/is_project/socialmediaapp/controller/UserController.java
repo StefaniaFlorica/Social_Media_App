@@ -20,10 +20,10 @@ public class UserController {
         return userService.submitUser(user);
     }
 
-    @GetMapping("/getAllUsers")
-    public List<User> getAllUsers()
+    @GetMapping("/getAllUsers/{userId}")
+    public List<User> getAllUsers(@PathVariable("userId") String userId)
     {
-        return userService.retrieveAllUsers();
+        return userService.retrieveAllUsers(userId);
     }
 
     @GetMapping("/getUserById/{userId}")

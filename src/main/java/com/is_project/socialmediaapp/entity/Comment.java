@@ -6,15 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.UUID;
 @Entity
 @DynamicUpdate
 public class Comment {
 
     @Id
-    private UUID commentID;
+    private String commentID;
     @Column
-    private UUID postID;
+    private String postID;
     @Column
     private String userID;
     @Column
@@ -45,7 +44,7 @@ public class Comment {
 
     }
 
-    public Comment(UUID commentID, UUID postID, String userID, String userImage, String userName, String comment,
+    public Comment(String commentID, String postID, String userID, String userImage, String userName, String comment,
                    Timestamp timestamp) {
         super();
         this.commentID = commentID;
@@ -57,19 +56,19 @@ public class Comment {
         this.timestamp = timestamp;
     }
 
-    public UUID getCommentID() {
+    public String getCommentID() {
         return commentID;
     }
 
-    public void setCommentID(UUID commentID) {
+    public void setCommentID(String commentID) {
         this.commentID = commentID;
     }
 
-    public UUID getPostID() {
+    public String getPostID() {
         return postID;
     }
 
-    public void setPostID(UUID postID) {
+    public void setPostID(String postID) {
         this.postID = postID;
     }
 
@@ -97,5 +96,16 @@ public class Comment {
         this.timestamp = timestamp;
     }
 
-
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentID=" + commentID +
+                ", postID=" + postID +
+                ", userID='" + userID + '\'' +
+                ", userImage='" + userImage + '\'' +
+                ", userName='" + userName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
