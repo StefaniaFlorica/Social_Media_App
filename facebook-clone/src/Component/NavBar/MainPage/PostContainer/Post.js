@@ -4,6 +4,7 @@ import { Paper, Avatar } from "@material-ui/core";
 // import post from "../../../../images/post.jpeg";
 import like from "../../../../images/like.png";
 import likebutton from "../../../../images/likebutton.png";
+import likebuttonblue from "../../../../images/likebuttonblue.png";
 import commentbutton from "../../../../images/comment.png";
 import sharebutton from "../../../../images/share.png";
 import { getImage } from "../../../../GetImage.js";
@@ -14,6 +15,8 @@ class Post extends Component {
     this.state = {
       comments: [],
       comment: null,
+      like_pressed: false,
+      like_count: this.props.object.likes,
     };
   }
   getData = () => {
@@ -24,7 +27,6 @@ class Post extends Component {
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(this.props.object.postID)
         thisContext.setState({ comments: json });
       })
       .catch((error) => {
@@ -67,6 +69,53 @@ class Post extends Component {
         });
     }
   };
+
+  updateLikeCount = () => {
+    if (!this.state.like_pressed) {
+      const thisContext = this;
+      const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      };
+      fetch(
+        "http://localhost:8080/api/postService/updatePostLikes/" +
+          this.props.object.postID +
+          "/1",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          thisContext.setState({ like_pressed: true, like_count: json.likes });
+          thisContext.props.refresh();
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } else {
+      const thisContext = this;
+      const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      };
+      fetch(
+        "http://localhost:8080/api/postService/updatePostLikes/" +
+          this.props.object.postID +
+          "/0",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          thisContext.setState({ like_pressed: false, like_count: json.likes });
+          thisContext.props.refresh();
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -74,7 +123,10 @@ class Post extends Component {
           {/* header */}
           <div className="post__header">
             <div className="post__header_img">
-              <Avatar src={getImage(this.props.object.imageURL)} className="post_img" />
+              <Avatar
+                src={getImage(this.props.object.imageURL)}
+                className="post_img"
+              />
             </div>
             <div className="post__header_text">
               {this.props.object.userName}
@@ -88,7 +140,11 @@ class Post extends Component {
           {/* image */}
           <div className="post__image">
             {this.isImageAvailable(this.props.object.postImgURL) ? (
-              <img src={this.props.object.postImgURL} width="600px" alt="post" />
+              <img
+                src={this.props.object.postImgURL}
+                width="600px"
+                alt="post"
+              />
             ) : (
               <span></span>
             )}
@@ -98,30 +154,55 @@ class Post extends Component {
             <div className="post__like">
               <img className="post__img" src={like} alt="like" />
             </div>
-            <div className="post__likecount">{this.props.object.likes}</div>
+            <div className="post__likecount">{this.state.like_count} </div>
             <div className="post__commentcount">
               {this.state.comments.length} comments
             </div>
           </div>
           {/* like share box */}
+
           <div className="post__likeShare">
             <div className="post__tab">
-              <div className="post__tabfirst">
-                <img className="post__tabimg" src={likebutton} alt="like button"/>
-              </div>
+              {this.state.like_pressed === false ? (
+                <div className="post__tabfirst">
+                  <img
+                    className="post__tabimg"
+                    src={likebutton}
+                    alt="like button"
+                    onClick={this.updateLikeCount}
+                  />
+                </div>
+              ) : (
+                <div className="post__tabfirst">
+                  <img
+                    className="post__tabimg"
+                    src={likebuttonblue}
+                    alt="like button"
+                    onClick={this.updateLikeCount}
+                  />
+                </div>
+              )}
               <div className="post__tabtext">Like</div>
             </div>
 
             <div className="post__tab">
               <div className="post__tabfirst">
-                <img className="post__tabimg" src={commentbutton} alt="comment button"/>
+                <img
+                  className="post__tabimg"
+                  src={commentbutton}
+                  alt="comment button"
+                />
               </div>
               <div className="post__tabtext">Comment</div>
             </div>
 
             <div className="post__tab">
               <div className="post__tabfirst">
-                <img className="post__tabimg" src={sharebutton} alt="share button" />
+                <img
+                  className="post__tabimg"
+                  src={sharebutton}
+                  alt="share button"
+                />
               </div>
               <div className="post__tabtext">Share</div>
             </div>
@@ -157,8 +238,8 @@ class Post extends Component {
                   onKeyDown={this.submitComment}
                   onChange={(event) => {
                     this.setState({
-                      comment: event.currentTarget.value
-                    })
+                      comment: event.currentTarget.value,
+                    });
                     // this.state.comment = event.currentTarget.value;
                   }}
                   className="upload__box"

@@ -14,21 +14,20 @@ class Status extends Component {
 
   openDialogToUploadStatus = (event) => {
     const thisContext = this;
-    let image=event.target.files[0] 
+    let image = event.target.files[0];
 
     console.log(image.name);
     if (image == null) return;
-    
+
     this.state.image = event.target.files[0];
     const imageName = image.name + v4();
     console.log(imageName);
     let imageRef = ref(db, `status/${imageName}`);
     uploadBytes(imageRef, this.state.image).then(() => {
-      alert("Image Uploaded");
       this.setState(this.state);
       listAll(ref(db, "status/")).then((response) => {
         response.items.forEach((item) => {
-          if (item.name == imageName) {
+          if (item.name === imageName) {
             getDownloadURL(item).then((downloadURL) => {
               let payload = {
                 userId: JSON.parse(localStorage.getItem("user")).userId,
@@ -50,7 +49,6 @@ class Status extends Component {
                 .then((data) => {
                   thisContext.props.refresh();
                   thisContext.props.update();
-                  alert("saved to db");
                 })
                 .catch((error) => {});
             });
@@ -58,7 +56,6 @@ class Status extends Component {
         });
       });
     });
-  
   };
 
   render() {
