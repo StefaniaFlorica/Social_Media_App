@@ -38,7 +38,7 @@ class UploadSection extends Component {
     console.log(imageName);
     let imageRef = ref(db, `images/${imageName}`);
     uploadBytes(imageRef, this.state.image).then(() => {
-      alert("Image Uploaded");
+      
       this.setState(this.state);
       listAll(ref(db, "images/")).then((response) => {
         response.items.forEach((item) => {
@@ -65,7 +65,6 @@ class UploadSection extends Component {
                 .then((data) => {
                   thisContext.setState({ open: false });
                   thisContext.props.update();
-                  alert("saved to db");
                 })
                 .catch((error) => {});
             });

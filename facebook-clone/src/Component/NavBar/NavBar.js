@@ -6,6 +6,7 @@ import home from "../../images/home.svg";
 import page from "../../images/pages.svg";
 import watch from "../../images/watch.svg";
 import market from "../../images/market.svg";
+import sign_out from "../../images/sign-out-icon.png";
 import group from "../../images/groups.svg";
 import { Avatar } from "@material-ui/core";
 import { getImage } from "../../GetImage";
@@ -17,6 +18,12 @@ class NavBar extends Component {
       image: JSON.parse(localStorage.getItem("user")).userImageURL,
     };
   }
+
+  myfunction() {
+    localStorage.clear();
+    window.location.reload();
+}
+
   render() {
     return (
       <div>
@@ -60,6 +67,10 @@ class NavBar extends Component {
                 <div className="navbar__profilename">
                   {JSON.parse(localStorage.getItem("user")).userName}
                 </div>
+                <div className="navbar__signout">
+                  <img src={sign_out} height="25px" width="25px" onClick={this.myfunction} />
+                </div>
+                
               </div>
             </div>
           </Grid>
