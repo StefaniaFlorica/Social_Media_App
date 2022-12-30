@@ -25,6 +25,18 @@ public class PostController {
     public List<Post> retriveAllPost(){
         return postService.retrievePostFromDB();
     }
+
+//    @PutMapping("/updatePost/{postId}")
+//    public Post updatePostById(@PathVariable("postId") String postId, @RequestBody Post newPostData) {
+//
+//        return postService.updatePostById(postId,newPostData);
+//    }
+    @PutMapping("/updatePostLikes/{postId}/{increase}")
+    public Post updatePostLikesById(@PathVariable("postId") String postId, @PathVariable("increase") String increase) {
+
+        return postService.updatePostLikesById(postId,increase);
+    }
+
     @GetMapping("/getPostById/{postId}")
     public Post getPostById(@PathVariable("postId") String postId)
     {

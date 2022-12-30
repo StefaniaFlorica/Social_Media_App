@@ -39,5 +39,26 @@ public class PostService {
     {
         return postRepo.getByPostID(id);
     }
+//    public Post updatePostById(String id,Post newPostData)
+//    {
+//        Post post = postRepo.getByPostID(id);
+//        post.se
+//        return postRepo.save(post);
+//    }
+    public Post updatePostLikesById(String id,String increase)
+    {
+        Post newPost = postRepo.getByPostID(id);
+        if(increase.equals("1"))
+        {
+            newPost.increaseLikes();
+        }
+        else
+        {
+            newPost.decreaseLikes();
+        }
+
+        return postRepo.save(newPost);
+    }
+
 
 }

@@ -102,4 +102,12 @@ public class Post {
     public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     }
+    public void increaseLikes()
+    {
+        this.likes++;
+    }
+    public void decreaseLikes()
+    {
+        this.likes--;
+    }
 }
