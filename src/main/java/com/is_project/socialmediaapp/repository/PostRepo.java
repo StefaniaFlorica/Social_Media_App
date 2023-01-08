@@ -11,5 +11,6 @@ public interface PostRepo extends JpaRepository<Post, UUID> {
 
     List<Post> findAll();
     Post save (Post post);
+    Post getByPostID(String postID);
     // void deleteById(UUID postID);
 }

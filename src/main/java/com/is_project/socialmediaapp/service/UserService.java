@@ -21,9 +21,9 @@ public class UserService {
         user.setJoiningDate(new Timestamp(new Date().getTime()));
         return userRepo.save(user);
     }
-    public List<User> retrieveAllUsers()
+    public List<User> retrieveAllUsers(String userId)
     {
-        return userRepo.findAll();
+        return userRepo.findAll().stream().filter(user -> !(user.getUserId().equals(userId))).limit(10).toList();
     }
     public User getUserById(String userId)
     {

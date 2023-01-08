@@ -15,5 +15,7 @@ public interface StatusRepository extends JpaRepository<Status, String> {
 
     List<Status> findAll();
 
+    List<Status> findAllByUserId(String userId);
+
     void deleteByStatusId(String statusId);
 }

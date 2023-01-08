@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StatusService {
@@ -21,12 +22,21 @@ public class StatusService {
 
     public Status submitStatus(Status status) {
         status.setDateTime(new Timestamp(new Date().getTime()));
-
+//        byte[] array = new byte[15]; // length is bounded by 7
+//        new Random().nextBytes(array);
+//        String generatedId = new String(array, Charset.forName("UTF-8"));
+        String generatedId = UUID.randomUUID().toString();
+        status.setStatusId(generatedId);
         return statusRepo.save(status);
     }
 
     public List<Status> retrieveAllStatus() {
         return statusRepo.findAll();
+    }
+
+    public List<Status> retrieveStatusByUserId(String userId)
+    {
+        return statusRepo.findAllByUserId(userId);
     }
 
     public Status getStatusById(String statusId) {

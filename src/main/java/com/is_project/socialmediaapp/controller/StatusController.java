@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/statusService")
 public class StatusController {
@@ -24,10 +25,17 @@ public class StatusController {
         return statusService.retrieveAllStatus();
     }
 
+    @GetMapping("/getAllStatusByUserId/{userId}")
+    public List<Status> retrieveAllStatusByUserId(@PathVariable String userId) {
+        return statusService.retrieveStatusByUserId(userId);
+    }
+
     @GetMapping("/getStatusById/{statusId}")
     public Status getStatusById(@PathVariable String statusId) {
         return statusService.getStatusById(statusId);
     }
+
+
 
     @DeleteMapping("/deleteStatus/{statusId}")
     public void deleteStatus(@PathVariable String statusId) {
