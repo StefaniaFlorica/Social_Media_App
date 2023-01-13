@@ -3,6 +3,7 @@ import "./LoginHome.css";
 import { Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
+import fblogo from "../../images/talkie.png";
 
 class LoginHome extends Component {
   constructor(props) {
@@ -113,14 +114,14 @@ class LoginHome extends Component {
           <Grid item xs={7}>
             <div className="fblogo">
               <img
-                src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
-                width="300px"
+                src={fblogo}
+                width="200px"
                 alt="logo"
               />
             </div>
             <div>
               <h1 className="text">
-                Facebook helps you connect and share with the people in your
+                Talkie helps you connect and share with the people in your
                 life.
               </h1>
             </div>

@@ -7,7 +7,7 @@
 
 }
 .fblogo {
-    margin-left: -150px;
+    margin-left: 30px;
     margin-top: 180px;
 }
 .text {
@@ -45,7 +45,7 @@
     font-size: 20px;
     font-weight: 600;
     color: white;
-    background-color: #1877f2;
+    background-color: #0a7dc0;
 }
 .login__createnew {
     width: 220px;
@@ -60,7 +60,7 @@
 }
 .forget_Text {
     margin-top: 15px;   
-    color: #1877f2;
+    color: #0a7dc0;
     font-weight: 500;
 }
 .dividor {

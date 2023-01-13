@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./NavBar.css";
 import Grid from "@material-ui/core/Grid";
-import fblogo from "../../images/logo.png";
+import fblogo from "../../images/talkie.png";
 import home from "../../images/home.svg";
 import page from "../../images/pages.svg";
 import watch from "../../images/watch.svg";
@@ -34,7 +34,7 @@ class NavBar extends Component {
               <input
                 className="navbar__search"
                 type="text"
-                placeholder="Search Facebook"
+                placeholder="Search Talkie"
               />
             </div>
           </Grid>
