@@ -1,0 +1,31 @@
+.mainpage__container {
+    height: 100vh;
+    background-color:#EFF2F5;
+}
+
+
+.imageLayout__container {
+    display: flex;
+    margin: 15px;
+}
+.imageLayout__imglay {
+
+}
+.imageLayout__img {
+    max-height: 35px;
+    max-width: 35px;
+}
+.imageLayout__text {
+    font-weight: 500;
+    margin: 10px;
+    font-size: 14px;
+}
+.middleContainer {
+    margin-left: 50px !important;
+    overflow-y: scroll;
+    height: 100vh;
+    max-width: 600px !important;
+}
+.MuiBadge-colorSecondary {
+    background-color: #4caf50  !important;
+}
